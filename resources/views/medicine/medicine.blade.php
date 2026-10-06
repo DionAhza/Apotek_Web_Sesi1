@@ -11,12 +11,13 @@
 
     {{ $medicines }}
 
-    <table>
+    <table border="1">
         <tr>
             <th>No</th>
             <th>Nama Obat</th>
             <th>Harga Obat</th>
             <th>Tanggal kadaluwarsa</th>
+            <th>Gambar obat</th>
             <th>Action</th>
         </tr>
         @foreach ($medicines as $item) 
@@ -25,9 +26,10 @@
             <td>{{ $item->name}}</td>
             <td>{{  $item->price}}</td>
             <td>{{ $item->expired}}</td>
+            <td><img src="{{ asset('gambars/'. $item->medicine_image ) }}" alt="{{ $item->name }}" width="full" height="64"></td>
             <td>
                 <a href="/obat/{{ $item->id }}">Detail</a>
-                <a href="/obat/delete/{{ $item->id }}"> DELETE</a>
+                <a href="/obat/delete/{{ $item->id }}"> DELETE</a> 
                 <a href="/obat/edit/{{ $item->id }}">edit</a>
             </td>
         </tr>

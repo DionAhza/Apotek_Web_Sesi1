@@ -29,11 +29,15 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
+        $gambar = $request->file('image');
+        $gambar->move('gambars', $gambar->getClientOriginalName());
+
         Medicine::create([
             'name' => $request->a,
             'description' => $request->b,
             'price' => $request->c,
-            'expired' => $request->d
+            'expired' => $request->d,
+            'medicine_image' => $gambar->getClientOriginalName()
         ]);
 
         return redirect('/obat');

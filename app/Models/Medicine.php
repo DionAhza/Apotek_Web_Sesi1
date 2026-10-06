@@ -10,6 +10,7 @@ class Medicine extends Model
         'name',
         'price',
         'description',
-        'expired'
+        'expired',
+        'medicine_image'
     ];
 }

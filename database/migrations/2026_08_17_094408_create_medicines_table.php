@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('price');
             $table->text('description');
             $table->date('expired');
+            $table->string('medicine_image')->nullable();
             $table->timestamps();
         });
     }
