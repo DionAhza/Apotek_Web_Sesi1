@@ -51,81 +51,56 @@
     <img src="/images/doodles.png" alt="">
   </div>
 </section>
-
+ 
     <section class="bg-gray-100 px-4 py-10">
         <div class="mx-auto gap-6 grid max-w-7xl grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
-<a href="#" class="group block overflow-hidden">
+
+       @foreach ($medicines as $item)
+           
+<a href="/obat/{{ $item->id }}" class="group block overflow-hidden">
   <div class="relative h-87.5 sm:h-112.5">
     <img
-      src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=1160"
+      src="{{ asset('gambars/'. $item->medicine_image ) }}"
       alt=""
       class="absolute inset-0 h-full w-full object-cover opacity-100 "
     />
-
-      
   </div>
-
-  <div class="relative bg-white pt-3">
-    <h3 class="text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
-      Limited Edition Sports Trainer
+  <div class="p-5">
+    <h3 class="text-lg font-bold text-gray-900">
+      {{ $item->name }}
     </h3>
-
-    <div class="mt-1.5 flex items-center justify-between text-gray-900">
-      <p class="tracking-wide">$189.99</p>
-
-      <p class="text-xs tracking-wide uppercase">6 Colors</p>
+    <p class="text-xl mt-2 text-indigo-600">
+      {{ number_format( $item->price) }}
+    </p>
+    <p class="mt-3 text-sm leading-relaxed">
+     {{$item->description}}
+    </p>
+    <div class="mt-4 border-t border-gray-200 pt-3">
+      <p>
+        Tanggal kadaluwarsa
+      </p>
+      <p> 
+        {{ \Carbon\Carbon::parse($item->expired )->format('d M Y') }}
+      </p>
     </div>
   </div>
 </a>
-<a href="#" class="group block overflow-hidden">
-  <div class="relative h-87.5 sm:h-112.5">
-    <img
-      src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=1160"
-      alt=""
-      class="absolute inset-0 h-full w-full object-cover opacity-100 "
-    />
+       @endforeach   
 
-  </div>
-
-  <div class="relative bg-white pt-3">
-    <h3 class="text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
-      Limited Edition Sports Trainer
-    </h3>
-
-    <div class="mt-1.5 flex items-center justify-between text-gray-900">
-      <p class="tracking-wide">$189.99</p>
-
-      <p class="text-xs tracking-wide uppercase">6 Colors</p>
-    </div>
-  </div>
-</a>
-<a href="#" class="group block overflow-hidden">
-  <div class="relative h-87.5 sm:h-112.5">
-    <img
-      src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=1160"
-      alt=""
-      class="absolute inset-0 h-full w-full object-cover opacity-100 "
-    />
-
-   
-  </div>
-
-  <div class="relative bg-white pt-3">
-    <h3 class="text-sm text-gray-700 group-hover:underline group-hover:underline-offset-4">
-      Limited Edition Sports Trainer
-    </h3>
-
-    <div class="mt-1.5 flex items-center justify-between text-gray-900">
-      <p class="tracking-wide">$189.99</p>
-
-      <p class="text-xs tracking-wide uppercase">6 Colors</p>
-    </div>
-  </div>
-</a>
         </div>
     </section>
 
     <x-footer></x-footer>
     
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if ( session('sukses'))
+        <script>
+    Swal.fire({
+        title: "Berhasil",
+        text: @json( session('sukses') ),
+         icon: "success"
+      });
+        </script>
+    @endif  
 </body>
 </html>

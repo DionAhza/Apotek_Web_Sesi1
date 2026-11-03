@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Medicine;
 use Illuminate\Http\Request;
 
 class FirstController extends Controller
@@ -11,6 +12,11 @@ class FirstController extends Controller
     {
         $nama = "Bagas Nasution";
         return view('about', compact('nama'));
+    }
+
+    public function halamanUser(){
+        $medicines = Medicine::all();
+        return view('index', compact('medicines'));
     }
 
     /**

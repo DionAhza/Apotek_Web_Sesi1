@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->date('expired');
             $table->string('medicine_image')->nullable();
+            $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });
     }

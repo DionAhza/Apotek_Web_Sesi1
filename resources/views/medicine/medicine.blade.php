@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Selamat datang di halaman Medicine</h1>
+    <h1>Selamat datang di halaman Medicine {{ Auth::user()->name}}</h1>
 
     {{ $medicines }}
 
@@ -41,5 +41,16 @@
     
 
     <a href="/obat/create">Tambah Obat</a>
+
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if ( session('sukses'))
+        <script>
+    Swal.fire({
+        title: "Berhasil",
+        text: @json( session('sukses') ),
+         icon: "success"
+      });
+        </script>
+    @endif  
 </body>
 </html>
